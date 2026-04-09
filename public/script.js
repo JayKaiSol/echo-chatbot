@@ -3,6 +3,7 @@
 const chatForm = document.getElementById("chat-form");
 const messageInput = document.getElementById("message-input");
 const chatBox = document.getElementById("chat-box");
+const resetButton = document.getElementById("reset-chat");
 
 // When the user submits the form, send the message and display the reply
 chatForm.addEventListener("submit", async (event) => {
@@ -45,3 +46,8 @@ chatForm.addEventListener("submit", async (event) => {
   botMessageElement.textContent = `Echo: ${data.reply}`;
   chatBox.appendChild(botMessageElement);
 });
+
+// Upon click, send a message to the console
+resetButton.addEventListener("click", async (event) => {
+  console.log ("The reset button has been pressed.");
+  });
