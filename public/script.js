@@ -49,5 +49,9 @@ chatForm.addEventListener("submit", async (event) => {
 
 // Upon click, send a message to the console
 resetButton.addEventListener("click", async (event) => {
-  console.log ("The reset button has been pressed.");
+  await fetch("/reset", {
+    method: "POST",
+  });
+  chatBox.innerHTML = "";
+  console.log("reset clicked")
   });

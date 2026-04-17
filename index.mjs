@@ -58,6 +58,13 @@ app.post("/chat", async (request, response) => {
   }
 });
 
+app.post("/reset", async (request, response) => {
+  messages.length = 1;
+  response.json({
+    success: true,
+  })
+});
+
 // Start the web server
 app.listen(PORT, () => {
   console.log(`Server running at http://localhost:${PORT}`);
