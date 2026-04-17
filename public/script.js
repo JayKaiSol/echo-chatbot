@@ -47,7 +47,7 @@ chatForm.addEventListener("submit", async (event) => {
   chatBox.appendChild(botMessageElement);
 });
 
-// Upon click, send a message to the console
+// Upon click, reset the chat and send a message to the console
 resetButton.addEventListener("click", async (event) => {
   await fetch("/reset", {
     method: "POST",
