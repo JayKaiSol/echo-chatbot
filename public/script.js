@@ -36,6 +36,7 @@ chatForm.addEventListener("submit", async (event) => {
   botThinkingElement.textContent = `Echo is thinking...`;
   chatBox.appendChild(botThinkingElement);
 
+  try {
   // Send the user's message to the backend /chat route
   const response = await fetch("/chat", {
     method: "POST",
@@ -62,6 +63,13 @@ chatForm.addEventListener("submit", async (event) => {
   // Re-enable the send button to respond to Echo
   sendButton.disabled = false;
   sendButton.textContent = "Send";
+  }
+
+  catch (error) {
+    sendButton.disabled = false;
+    sendButton.textContent = "Send";
+  }
+
 });
 
 // Upon click, reset the chat and send a message to the console
