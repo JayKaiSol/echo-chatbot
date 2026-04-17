@@ -66,6 +66,10 @@ chatForm.addEventListener("submit", async (event) => {
   }
 
   catch (error) {
+    chatBox.removeChild(botThinkingElement);
+    const botErrorMessage = document.createElement("p");
+    botErrorMessage.textContent = `Echo: Sorry, something went wrong. Please try again.`;
+    chatBox.appendChild(botErrorMessage);
     sendButton.disabled = false;
     sendButton.textContent = "Send";
   }
