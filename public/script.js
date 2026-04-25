@@ -33,7 +33,7 @@ chatForm.addEventListener("submit", async (event) => {
 
   // Send an "Echo is thinking..." message in the chat box.
   const botThinkingElement = document.createElement("p");
-  botThinkingElement.textContent = `Echo is thinking...`;
+  botThinkingElement.textContent = `Sunless is thinking...`;
   chatBox.appendChild(botThinkingElement);
 
   try {
@@ -57,7 +57,7 @@ chatForm.addEventListener("submit", async (event) => {
 
   // Show Echo's reply in the chat box
   const botMessageElement = document.createElement("p");
-  botMessageElement.textContent = `Echo: ${data.reply}`;
+  botMessageElement.textContent = `Sunless: ${data.reply}`;
   chatBox.appendChild(botMessageElement);
 
   // Re-enable the send button to respond to Echo
@@ -68,7 +68,7 @@ chatForm.addEventListener("submit", async (event) => {
   catch (error) {
     chatBox.removeChild(botThinkingElement);
     const botErrorMessage = document.createElement("p");
-    botErrorMessage.textContent = `Echo: Sorry, something went wrong. Please try again.`;
+    botErrorMessage.textContent = `Sunless: Sorry, something went wrong. Please try again.`;
     chatBox.appendChild(botErrorMessage);
     sendButton.disabled = false;
     sendButton.textContent = "Send";

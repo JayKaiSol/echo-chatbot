@@ -47,7 +47,7 @@ const commands = [
   {
     // The slash command name people type in Discord
     name: 'echo',
-    description: 'Talk to Lord of Shadows',
+    description: 'Talk to Sunless',
 
     // [1] means USER_INSTALL
     // This makes the command available for "Add to My Apps" installs
@@ -60,7 +60,7 @@ const commands = [
     options: [
      {
        name: 'message',
-       description: 'What you want to say to Lord of Shadows',
+       description: 'What you want to say to Sunless',
        type: 3,
        required: true,
      }
@@ -88,7 +88,7 @@ async function registerCommands() {
 // This runs once when the bot has logged in successfully
 // and is fully connected to Discord.
 client.once('clientReady', () => {
-  console.log('Lord of Shadows Discord bot is online!');
+  console.log('Sunless Discord bot is online!');
 });
 
 // This runs whenever Discord sends your bot an interaction.
