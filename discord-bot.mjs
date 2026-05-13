@@ -20,10 +20,34 @@ const client = new Client({
   intents: [
     GatewayIntentBits.DirectMessages,
     GatewayIntentBits.MessageContent,
+    GatewayIntentBits.Guilds,
     GatewayIntentBits.GuildMessages,
   ],
   partials: [Partials.Channel],
 });
+
+//This splits the reply neatly by lines instead of slicing randomly through words.
+function splitMessage(text, maxLength = 1900) {
+  const chunks = [];
+  let currentChunk = "";
+
+  const lines = text.split("\n");
+
+  for (const line of lines) {
+    if ((currentChunk + "\n" + line).length > maxLength) {
+      chunks.push(currentChunk);
+      currentChunk = line;
+    } else {
+      currentChunk += currentChunk ? "\n" + line : line;
+    }
+  }
+
+  if (currentChunk) {
+    chunks.push(currentChunk);
+  }
+
+  return chunks;
+}
 
 const userConversations = new Map();
 
@@ -125,15 +149,21 @@ client.on('interactionCreate', async (interaction) => {
 
 client.on('messageCreate', async (message) => {
   if (message.author.bot) return;
-  if (message.channel.type !== 1) return;
 
   const userMessage = message.content;
 
   const reply = await getBotReply([
-  { role: 'user', content: userMessage }
-]);
+    { role: 'user', content: userMessage }
+  ]);
 
-  await message.reply(reply);
+// splits the full bot response into chunks first, then sends chunk 1 as the direct reply, then sends the rest one-by-one after that.
+ const chunks = splitMessage(reply);
+
+await message.reply(chunks[0]);
+
+for (const chunk of chunks.slice(1)) {
+  await message.channel.send(chunk);
+}
 });
 
 await loadConversations();
